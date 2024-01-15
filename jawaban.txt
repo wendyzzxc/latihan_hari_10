@@ -1,0 +1,65 @@
+1. pembuatan databases
+CREATE DATABASE myshop;
+
+2.
+CREATE TABLE users(
+ID int NOT NULL AUTO_INCREMENT,
+NAME varchar(255),
+EMAIL varchar(255),
+PASSWORD varchar(255),
+PRIMARY KEY (ID)
+);
+
+CREATE TABLE categories(
+ID int NOT NULL AUTO_INCREMENT,
+NAME varchar(255),
+PRIMARY KEY (ID)
+);
+
+CREATE TABLE items(
+ID int NOT NULL AUTO_INCREMENT,
+NAME varchar(255),
+DESCRIPTION varchar(255),
+PRICE int,
+STOCK int,
+CATEGORY_ID int,
+PRIMARY KEY (ID),
+FOREIGN KEY (CATEGORY_ID) REFERENCES categories（ID）
+);
+
+3.
+INSERT INTO users (NAME,EMAIL)
+VALUES ('John Doe','john@doe.com'),
+('Jane Doe','jane@doe.com');
+
+INSERT INTO categories(NAME)
+VALUES ('gadget'),
+('cloth'),
+('men'),
+('women'),
+('branded');
+
+INSERT INTO items(NAME,DESCRIPTION)
+VALUES ('Sumsang b50','hape keren dari merek sumsang'),
+('Uniklooh','baju keren dari brand ternama'),
+('IMHO Watch','jam tangan anak yang jujur banget');
+
+4.
+A.
+SELECT ID, NAME, EMAIL FROM USERS;
+
+B.
+SELECT * FROM ITEMS
+WHERE PRICE > 1000000;
+
+SELECT * FROM ITEMS
+WHERE NAME LIKE '%uniklo%';
+
+C.
+SELECT items.NAME, items.DESCRIPTION, categories.NAME
+FROM items
+INNER JOIN categories ON items.CATEGORY_ID = categories.ID;
+
+5.
+UPDATE items SET PRICE = 2500000
+WHERE NAME = 'sumsang b50';
